@@ -53,50 +53,62 @@
         </div>
 
         <!-- Portal Services Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             
             <!-- Service 1: Map & Plot Lookup -->
             <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-2 mb-3">
                         <span class="p-2 bg-green-50 text-bdGreen rounded-lg font-bold">🗺️</span>
-                        <h3 class="text-lg font-bold text-gray-800">Plot Lookup & Risk Analysis</h3>
+                        <h3 class="text-base font-bold text-gray-800">Plot Lookup</h3>
                     </div>
-                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">Inspect exact spatial boundaries, legal dispute warnings, Khas status, and cryptographic hashes.</p>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">Inspect boundaries, court disputes, and cryptographic hashes.</p>
                 </div>
-                <a href="./search.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2.5 rounded font-medium text-xs hover:bg-bdGreenHover transition shadow-sm">
-                    Open Map Inspector →
+                <a href="./search.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2 rounded font-medium text-xs hover:bg-bdGreenHover transition">
+                    Open Map →
                 </a>
             </div>
 
-            <!-- Service 2: AI Porcha & Deed Forensics -->
+            <!-- Service 2: AI Porcha & Forensics -->
             <div class="bg-white p-6 rounded-lg shadow-sm border border-emerald-200 bg-gradient-to-b from-white to-emerald-50/30 hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-2 mb-3">
                         <span class="p-2 bg-emerald-100 text-bdGreen rounded-lg font-bold">🤖</span>
-                        <h3 class="text-lg font-bold text-gray-800">PorchaAI & Title Lineage</h3>
+                        <h3 class="text-base font-bold text-gray-800">PorchaAI Studio</h3>
                     </div>
-                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">Upload scanned historical Bangla deeds/khatians to extract text via AI OCR and verify ownership lineage graphs.</p>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">OCR scan historical Bangla khatians and trace ownership lineages.</p>
                 </div>
-                <a href="./ai-forensics.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2.5 rounded font-medium text-xs hover:bg-bdGreenHover transition shadow-sm">
-                    Launch AI Forensics →
+                <a href="./ai-forensics.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2 rounded font-medium text-xs hover:bg-bdGreenHover transition">
+                    Launch AI →
                 </a>
             </div>
 
-            <!-- Service 3: Owner Search -->
+            <!-- Service 3: Anti-Fraud & Double-Selling Detector (P3) -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-red-200 bg-gradient-to-b from-white to-red-50/30 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="p-2 bg-red-100 text-bdRed rounded-lg font-bold">🚨</span>
+                        <h3 class="text-base font-bold text-gray-800">Anti-Fraud Engine</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">Detect double-selling attempts and conflicting registry claims automatically[cite: 6, 11].</p>
+                </div>
+                <a href="./fraud-detector.html" class="inline-block text-center bg-bdRed text-white px-4 py-2 rounded font-medium text-xs hover:bg-red-700 transition">
+                    Scan Fraud →
+                </a>
+            </div>
+
+            <!-- Service 4: Citizen Owner Portfolio -->
             <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-2 mb-3">
                         <span class="p-2 bg-green-50 text-bdGreen rounded-lg font-bold">👤</span>
-                        <h3 class="text-lg font-bold text-gray-800">Citizen Owner Portfolio</h3>
+                        <h3 class="text-base font-bold text-gray-800">Owner Portfolio</h3>
                     </div>
-                    <p class="text-xs text-gray-600 mb-4 leading-relaxed">Cross-reference national registry records for all properties registered under a citizen's name.</p>
+                    <p class="text-xs text-gray-600 mb-4 leading-relaxed">Cross-reference national registry records by owner name.</p>
                 </div>
-                <div>
-                    <div class="flex gap-2">
-                        <input type="text" id="ownerInput" placeholder="e.g. Anonto Raj" class="border border-gray-300 p-2 rounded flex-grow text-xs focus:outline-none focus:border-bdGreen">
-                        <button onclick="searchByOwner()" class="bg-bdGreen text-white px-3 py-2 rounded text-xs hover:bg-bdGreenHover font-medium transition">Search</button>
-                    </div>
+                <div class="flex gap-2">
+                    <input type="text" id="ownerInput" placeholder="e.g. Anonto Raj" class="border border-gray-300 p-2 rounded flex-grow text-xs focus:outline-none focus:border-bdGreen">
+                    <button onclick="searchByOwner()" class="bg-bdGreen text-white px-3 py-2 rounded text-xs hover:bg-bdGreenHover font-medium transition">Search</button>
                 </div>
             </div>
 

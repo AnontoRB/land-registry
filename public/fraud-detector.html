@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandTech 2026 - Anti-Fraud & Double-Selling Detector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bdGreen: '#006A4E',
+                        bdGreenHover: '#00543e',
+                        bdRed: '#F42A41'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-slate-100 min-h-screen text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-bdGreen text-white border-b-4 border-bdRed shadow-md">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-bdRed flex items-center justify-center font-bold text-white text-xl shadow">🇧🇩</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">Sub-Registry Anti-Fraud Engine</h1>
+                    <p class="text-xs text-green-200">LandTech 2026 Hackathon | Track: Catch Fraud & Double-Selling (P3)[cite: 6, 11]</p>
+                </div>
+            </div>
+            <a href="./index.html" class="text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded border border-white/20 transition">← Return to Home</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto p-6 space-y-6">
+        
+        <!-- Intro Banner -->
+        <div class="bg-white rounded-lg shadow border-t-4 border-bdRed p-6">
+            <h2 class="text-xl font-bold text-bdRed mb-2">🚨 Real-Time Double-Selling & Tamper Detection System</h2>
+            <p class="text-gray-600 text-sm leading-relaxed">
+                Test incoming deed submissions against national registry archives. The system instantly detects if a property is being registered to multiple buyers or if fraudulent alterations have been attempted on land deeds.
+            </p>
+        </div>
+
+        <!-- Testing Console Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Input Panel -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 space-y-4">
+                <h3 class="font-bold text-gray-800 text-base border-b pb-2">🔍 Test Deed Transaction</h3>
+                
+                <div class="space-y-2">
+                    <label class="block text-xs font-semibold text-gray-700">Select Test Scenario:</label>
+                    <select id="fraudScenario" class="w-full border border-gray-300 p-2.5 rounded text-xs bg-slate-50 focus:outline-none focus:border-bdGreen">
+                        <option value="safe">Scenario A: Legitimate Single Transfer (Plot #555 - Anonto Raj)</option>
+                        <option value="fraud">Scenario B: Double-Selling Attempt (Plot #404 - Conflicting Buyers)</option>
+                    </select>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded border text-xs space-y-2 text-gray-600">
+                    <p><strong>System Rule:</strong> Cross-checks cryptographic checksums, National ID metadata flags, and sub-registry mutation pendency.</p>
+                </div>
+
+                <button onclick="runFraudCheck()" class="w-full bg-bdRed text-white py-3 rounded text-sm font-medium hover:bg-red-700 transition shadow-sm flex items-center justify-center gap-2">
+                    <span>⚡</span> Execute Cross-Registry Conflict Scan
+                </button>
+            </div>
+
+            <!-- Audit Output Dashboard -->
+            <div id="fraudOutputContainer" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center text-gray-400">
+                <span class="text-4xl mb-2">🛡️</span>
+                <p class="text-xs">Awaiting scan... Select a scenario and run the fraud verification audit.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script -->
+    <script>
+        function runFraudCheck() {
+            const scenario = document.getElementById('fraudScenario').value;
+            const container = document.getElementById('fraudOutputContainer');
+            
+            container.innerHTML = `<div class="flex flex-col items-center justify-center py-12"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-bdRed mb-3"></div><p class="text-xs font-medium text-gray-600">Scanning National Sub-Registry Databases...</p></div>`;
+
+            setTimeout(() => {
+                if (scenario === 'safe') {
+                    container.innerHTML = `
+                        <div class="w-full text-left space-y-3 text-xs">
+                            <div class="flex justify-between items-center border-b pb-2">
+                                <span class="font-bold text-bdGreen text-sm">✅ Verification Passed: Clean Title</span>
+                                <span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded font-bold text-[10px]">RISK: 0%</span>
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-200 p-3 rounded">
+                                <strong class="text-emerald-900 block mb-1">Status: Ready for Sub-Registry Approval</strong>
+                                <p class="text-emerald-700">No overlapping claims, multiple buyer flags, or pending court injunctions found for Plot #555.</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded border font-mono text-[10px]">
+                                SHA-256 Match: Validated against central e-governance ledger.
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = `
+                        <div class="w-full text-left space-y-3 text-xs">
+                            <div class="flex justify-between items-center border-b pb-2">
+                                <span class="font-bold text-bdRed text-sm">🚨 CRITICAL FRAUD DETECTED</span>
+                                <span class="bg-red-100 text-red-800 px-2.5 py-0.5 rounded font-bold text-[10px]">RISK: HIGH</span>
+                            </div>
+                            <div class="bg-red-50 border border-red-200 p-3 rounded space-y-1">
+                                <strong class="text-red-900 block">⚠️ Double-Selling Conflict Flagged:</strong>
+                                <p class="text-red-700">Plot #404 is currently registered under active deed #8891 to Buyer A, but a secondary transfer request has been submitted under deed #9042 to Buyer B.</p>
+                            </div>
+                            <div class="bg-amber-50 border border-amber-200 p-3 rounded text-amber-800">
+                                <strong>Action Taken:</strong> Automatic lock triggered on sub-registry mutation workflow. Authorities alerted.
+                            </div>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
