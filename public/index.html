@@ -2,39 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bangladesh Land Registry Portal - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Land Registry & Information System - Government of Bangladesh</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bdGreen: '#006A4E',
+                        bdGreenHover: '#00543e',
+                        bdRed: '#F42A41',
+                        bdGold: '#FFCB05'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-100 p-6">
-    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow">
-        <h1 class="text-3xl font-bold mb-2 text-gray-800">National Land Registry & Information System</h1>
-        <p class="text-gray-600 mb-6">Verify land ownership, search property history, and check national records securely.</p>
-        
-        <!-- Navigation Options -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Option 1: Map & Plot Search -->
-            <div class="p-6 border rounded-lg bg-blue-50">
-                <h2 class="text-xl font-semibold text-blue-700 mb-2">Search by Plot / Map</h2>
-                <p class="text-sm text-gray-600 mb-4">Locate exact boundaries, coordinates, and plot history visually.</p>
-                <!-- Fixed relative link to search.html -->
-                <a href="./search.html" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Open Map Search</a>
-            </div>
+<body class="bg-slate-100 min-h-screen text-gray-800 font-sans">
 
-            <!-- Option 2: Owner Name Search -->
-            <div class="p-6 border rounded-lg bg-green-50">
-                <h2 class="text-xl font-semibold text-green-700 mb-2">Search by Owner Name</h2>
-                <p class="text-sm text-gray-600 mb-4">Find all properties registered under a specific citizen's name in Bangladesh.</p>
-                <div class="flex gap-2">
-                    <input type="text" id="ownerInput" placeholder="e.g. Anonto Raj" class="border p-2 rounded flex-grow text-sm">
-                    <button onclick="searchByOwner()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm">Search</button>
+    <!-- Official Top Government Banner -->
+    <header class="bg-bdGreen text-white border-b-4 border-bdRed shadow-md">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-bdRed flex items-center justify-center font-bold text-white text-xl shadow">
+                    🇧🇩
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">National Land Registry Portal</h1>
+                    <p class="text-xs text-green-200">Government of the People's Republic of Bangladesh</p>
                 </div>
             </div>
+            <div class="bg-white/10 px-3 py-1 rounded text-xs text-green-100 border border-white/20">
+                Official Digital Land Services
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto p-6">
+        
+        <!-- Welcome Hero Box -->
+        <div class="bg-white rounded-lg shadow border-t-4 border-bdGreen p-6 mb-8">
+            <h2 class="text-2xl font-bold text-bdGreen mb-2">Land Ownership Verification & Information System</h2>
+            <p class="text-gray-600 text-sm">Verify registered land plots, inspect historical transfer records, and verify property titles across Bangladesh.</p>
         </div>
 
-        <!-- Results for Owner Search -->
-        <div id="ownerResults" class="mt-6"></div>
-    </div>
+        <!-- Portal Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Service 1: Map Search -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="p-2 bg-green-50 text-bdGreen rounded-lg font-bold">🗺️</span>
+                        <h3 class="text-lg font-bold text-gray-800">Search by Plot / Map</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">View exact spatial boundaries, geographic coordinates, pricing breakdowns, and historical plot records directly on the map.</p>
+                </div>
+                <a href="./search.html" class="inline-block text-center bg-bdGreen text-white px-5 py-2.5 rounded font-medium text-sm hover:bg-bdGreenHover transition shadow-sm w-full sm:w-auto">
+                    Open Interactive Map →
+                </a>
+            </div>
 
+            <!-- Service 2: Owner Search -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="p-2 bg-green-50 text-bdGreen rounded-lg font-bold">👤</span>
+                    <h3 class="text-lg font-bold text-gray-800">Search by Owner Name</h3>
+                </div>
+                <p class="text-xs text-gray-600 mb-4 leading-relaxed">Search national registry records to find all properties registered under a specific citizen's name in Bangladesh.</p>
+                
+                <div class="flex gap-2">
+                    <input type="text" id="ownerInput" placeholder="e.g. Anonto Raj" class="border border-gray-300 p-2.5 rounded flex-grow text-sm focus:outline-none focus:border-bdGreen">
+                    <button onclick="searchByOwner()" class="bg-bdGreen text-white px-4 py-2.5 rounded text-sm hover:bg-bdGreenHover font-medium transition shadow-sm">Search</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Results Box -->
+        <div id="ownerResults" class="mt-6"></div>
+
+    </main>
+
+    <!-- Script -->
     <script>
         const ownerDatabase = {
             "Anonto Raj": [
@@ -43,14 +96,12 @@
             ]
         };
 
-        // Enable Enter Key for Searching
         document.getElementById('ownerInput').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 searchByOwner();
             }
         });
 
-        // Simple similarity check for "Did you mean?" suggestions
         function getSuggestion(input) {
             const cleanInput = input.toLowerCase();
             const keys = Object.keys(ownerDatabase);
@@ -65,24 +116,42 @@
         function searchByOwner() {
             const inputVal = document.getElementById('ownerInput').value.trim();
             const resultDiv = document.getElementById('ownerResults');
+
+            if (!inputVal) {
+                resultDiv.innerHTML = `<div class="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-lg text-sm">Please enter a name to search.</div>`;
+                return;
+            }
             
-            // Check direct match (case insensitive)
             const matchedKey = Object.keys(ownerDatabase).find(k => k.toLowerCase() === inputVal.toLowerCase());
 
             if (matchedKey) {
                 const records = ownerDatabase[matchedKey];
-                let html = `<h3 class="font-bold text-lg mb-2 text-green-800">Properties owned by ${matchedKey}:</h3><ul class="space-y-2">`;
+                let html = `
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-200">
+                        <h3 class="font-bold text-lg mb-4 text-bdGreen flex items-center gap-2">
+                            <span>📋</span> Registered Properties for "${matchedKey}"
+                        </h3>
+                        <div class="space-y-3">`;
                 records.forEach(r => {
-                    html += `<li class="p-3 border rounded bg-gray-50"><strong>${r.plot}</strong> - ${r.location} (${r.area}) | Value: ${r.value}</li>`;
+                    html += `
+                        <div class="p-4 border-l-4 border-bdGreen bg-slate-50 rounded shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">${r.plot}</h4>
+                                <p class="text-xs text-gray-600">${r.location} • Area: ${r.area}</p>
+                            </div>
+                            <span class="text-xs font-semibold bg-green-100 text-bdGreen px-3 py-1 rounded-full w-fit">Estimated Value: ${r.value}</span>
+                        </div>`;
                 });
-                html += `</ul>`;
+                html += `</div></div>`;
                 resultDiv.innerHTML = html;
             } else {
-                // Check for close suggestions
                 const suggestion = getSuggestion(inputVal);
-                let suggestionText = suggestion ? ` Did you mean <a href="#" onclick="document.getElementById('ownerInput').value='${suggestion}'; searchByOwner();" class="text-blue-600 underline font-semibold">${suggestion}</a>?` : '';
+                let suggestionText = suggestion ? ` Did you mean <a href="#" onclick="document.getElementById('ownerInput').value='${suggestion}'; searchByOwner();" class="text-bdGreen underline font-bold">${suggestion}</a>?` : '';
                 
-                resultDiv.innerHTML = `<p class="text-red-600">No properties found for "${inputVal}".${suggestionText}</p>`;
+                resultDiv.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg text-sm">
+                        No property records found for "<strong>${inputVal}</strong>".${suggestionText}
+                    </div>`;
             }
         }
     </script>
