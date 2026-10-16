@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Hackathon Mock Database with Advanced Fields (P2 & P5 compliance)
+// Hackathon Mock Database with Advanced Fields (P2 & P5 compliance)[cite: 11]
 const landDatabase = {
     "555": {
         id: "Plot #555",
