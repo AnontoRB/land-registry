@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Land Registry Portal - Interactive Map Search</title>
+    <title>LandTech 2026 - Interactive Plot & Deed Verification</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -32,7 +32,7 @@
                 </div>
                 <div>
                     <h1 class="text-xl font-bold tracking-wide">National Land Registry Portal</h1>
-                    <p class="text-xs text-green-200">Government of the People's Republic of Bangladesh</p>
+                    <p class="text-xs text-green-200">LandTech 2026 Hackathon | Check Before You Buy Module</p>
                 </div>
             </div>
             <a href="./index.html" class="text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded border border-white/20 transition">
@@ -44,12 +44,13 @@
     <!-- Main Container -->
     <main class="max-w-5xl mx-auto p-6">
         <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h2 class="text-xl font-bold text-bdGreen mb-4">Interactive Plot & Cadastral Search</h2>
+            <h2 class="text-xl font-bold text-bdGreen mb-2">Interactive Cadastral Map & Deed Verification Inspector</h2>
+            <p class="text-xs text-gray-500 mb-4">Enter a Plot ID (e.g. 555) to check ownership authenticity, court disputes, and cryptographic hashes.</p>
             
             <!-- Search Bar -->
             <div class="flex gap-2 mb-4">
                 <input type="text" id="plotInput" placeholder="Enter Registered Plot ID (e.g. 555)" class="border border-gray-300 p-2.5 rounded text-sm flex-grow focus:outline-none focus:border-bdGreen">
-                <button onclick="searchPlot()" class="bg-bdGreen text-white px-5 py-2.5 rounded text-sm hover:bg-bdGreenHover font-medium transition shadow-sm">Search Plot</button>
+                <button onclick="searchPlot()" class="bg-bdGreen text-white px-5 py-2.5 rounded text-sm hover:bg-bdGreenHover font-medium transition shadow-sm">Verify Plot</button>
             </div>
 
             <!-- Map Container -->
