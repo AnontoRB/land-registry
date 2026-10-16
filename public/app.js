@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const mapContainer = document.getElementById('map');
     
     if (mapContainer) {
-        // Center default view around Dhaka, Bangladesh
-        map = L.map('map').setView([23.8103, 90.4125], 13);
+        // Center default view around Savar/Dhaka, Bangladesh
+        map = L.map('map').setView([23.815, 90.415], 13);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '© OpenStreetMap contributors'
+            attribution: '© LandTech 2026 DIU Team | OpenStreetMap contributors'
         }).addTo(map);
     }
 
@@ -26,17 +26,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Simulated database of land plots
+// Hackathon Mock Database with Advanced Fields (P2 & P5 compliance)
 const landDatabase = {
     "555": {
         id: "Plot #555",
-        location: "Savar, Dhaka Division",
-        area: "555 sq meters",
+        location: "Savar Upazila, Dhaka Division",
+        mouza: "Savar Mouza-42",
+        khatianNo: "CS-204 / RS-512",
+        area: "555 sq meters (approx 8 Katha)",
         currentOwner: "Anonto Raj",
         previousOwners: ["Rahim Uddin", "Karim Ahmed"],
-        currentPrice: "$50,000",
-        previousPrice: "$42,000",
-        valuationReason: "Valuation increased due to proximity to commercial highway expansion and complete legal clear-title certification.",
+        currentPrice: "BDT 5,500,000",
+        previousPrice: "BDT 4,800,000",
+        valuationReason: "High valuation driven by direct frontage on newly expanded commercial highway and completed electronic mutation clearance.",
+        legalStatus: "No Pending Court Cases (Clean Title)",
+        khasOrAcquisition: "Not Khas | Free from Government Acquisition Orders",
+        cryptographicHash: "0x8f4c2b9a71d3e6f809123456789abcdef0123456",
+        qrStatus: "Verified Authentic (Digital Signature Valid)",
         lat: 23.815,
         lng: 90.415
     }
@@ -50,33 +56,56 @@ function searchPlot() {
     const plotId = inputElement.value.trim();
     
     if (!plotId) {
-        resultDiv.innerHTML = `<div class="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-lg text-sm">Please enter a Plot ID to search.</div>`;
+        resultDiv.innerHTML = `<div class="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-lg text-sm">Please enter a Plot ID to verify.</div>`;
         return;
     }
 
     const plot = landDatabase[plotId];
 
     if (plot) {
-        // Display formatted result details
+        // Display comprehensive LandTech verification report
         resultDiv.innerHTML = `
-            <div class="p-5 bg-slate-50 border-l-4 border-bdGreen rounded shadow-sm">
-                <div class="flex justify-between items-start mb-3">
+            <div class="p-6 bg-slate-50 border-l-4 border-bdGreen rounded shadow-sm space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-3 gap-2">
                     <div>
-                        <h3 class="text-lg font-bold text-bdGreen">${plot.id}</h3>
-                        <p class="text-xs text-gray-500">${plot.location}</p>
+                        <h3 class="text-xl font-bold text-bdGreen">${plot.id}</h3>
+                        <p class="text-xs text-gray-600">${plot.location} | Mouza: ${plot.mouza} | Khatian: ${plot.khatianNo}</p>
                     </div>
-                    <span class="text-xs font-semibold bg-green-100 text-bdGreen px-3 py-1 rounded-full">Current Value: ${plot.currentPrice}</span>
+                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-3 py-1.5 rounded-full border border-emerald-200">
+                        🛡️ ${plot.qrStatus}
+                    </span>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-700 mb-3">
+                <!-- Core Details Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-700 bg-white p-4 rounded border">
                     <p><strong>Total Area:</strong> ${plot.area}</p>
                     <p><strong>Current Owner:</strong> ${plot.currentOwner}</p>
-                    <p class="sm:col-span-2"><strong>Historical Owners:</strong> ${plot.previousOwners.join(" ➔ ")} ➔ <span class="text-bdGreen font-semibold">${plot.currentOwner}</span></p>
-                    <p><strong>Previous Valuation:</strong> ${plot.previousPrice}</p>
+                    <p><strong>Chain of Ownership:</strong> ${plot.previousOwners.join(" ➔ ")} ➔ <span class="text-bdGreen font-bold">${plot.currentOwner}</span></p>
+                    <p><strong>Current Market Value:</strong> ${plot.currentPrice} (Prev: ${plot.previousPrice})</p>
+                </div>
+
+                <!-- LandTech Safety & Legal Audit (P5) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <div class="bg-green-50 border border-green-200 p-3 rounded">
+                        <strong class="text-green-900 block mb-1">⚖️ Legal & Court Status:</strong>
+                        <span class="text-green-700 font-medium">${plot.legalStatus}</span>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 p-3 rounded">
+                        <strong class="text-blue-900 block mb-1">🏛️ Government Status:</strong>
+                        <span class="text-blue-700 font-medium">${plot.khasOrAcquisition}</span>
+                    </div>
                 </div>
                 
-                <div class="bg-white p-3 rounded border border-gray-200 text-xs text-gray-600">
-                    <strong class="text-gray-800">Valuation Assessment Note:</strong> ${plot.valuationReason}
+                <!-- Valuation & Cryptographic Hash (P2) -->
+                <div class="space-y-2 text-xs">
+                    <div class="bg-white p-3 rounded border border-gray-200">
+                        <strong class="text-gray-800 block mb-1">📈 Price Valuation Reason:</strong>
+                        <p class="text-gray-600">${plot.valuationReason}</p>
+                    </div>
+                    <div class="bg-slate-900 text-emerald-400 p-3 rounded font-mono text-[11px] flex justify-between items-center overflow-x-auto">
+                        <span><strong>Deed SHA-256 Hash:</strong> ${plot.cryptographicHash}</span>
+                        <span class="bg-emerald-800 text-white px-2 py-0.5 rounded text-[10px]">SECURE</span>
+                    </div>
                 </div>
             </div>
         `;
@@ -85,13 +114,13 @@ function searchPlot() {
         if (map) {
             map.setView([plot.lat, plot.lng], 16);
             L.marker([plot.lat, plot.lng]).addTo(map)
-                .bindPopup(`<b>${plot.id}</b><br>Owner: ${plot.currentOwner}`)
+                .bindPopup(`<b>${plot.id}</b><br>Owner: ${plot.currentOwner}<br><span style="color:green;">✔ Verified Title</span>`)
                 .openPopup();
         }
     } else {
         resultDiv.innerHTML = `
             <div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg text-sm">
-                Plot ID "<strong>${plotId}</strong>" was not found in the registry database. Try searching for "<strong>555</strong>".
+                Plot ID "<strong>${plotId}</strong>" was not found in the dummy registry database. Try searching for plot ID "<strong>555</strong>".
             </div>`;
     }
 }
