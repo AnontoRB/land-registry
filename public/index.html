@@ -1,160 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>National Land Registry & Information System - Government of Bangladesh</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bdGreen: '#006A4E',
-                        bdGreenHover: '#00543e',
-                        bdRed: '#F42A41',
-                        bdGold: '#FFCB05'
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-slate-100 min-h-screen text-gray-800 font-sans">
-
-    <!-- Official Top Government Banner -->
-    <header class="bg-bdGreen text-white border-b-4 border-bdRed shadow-md">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-bdRed flex items-center justify-center font-bold text-white text-xl shadow">
-                    🇧🇩
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold tracking-wide">National Land Registry Portal</h1>
-                    <p class="text-xs text-green-200">Government of the People's Republic of Bangladesh</p>
-                </div>
-            </div>
-            <div class="bg-white/10 px-3 py-1 rounded text-xs text-green-100 border border-white/20">
-                Official Digital Land Services
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Container -->
-    <main class="max-w-5xl mx-auto p-6">
-        
-        <!-- Welcome Hero Box -->
-        <div class="bg-white rounded-lg shadow border-t-4 border-bdGreen p-6 mb-8">
-            <h2 class="text-2xl font-bold text-bdGreen mb-2">Land Ownership Verification & Information System</h2>
-            <p class="text-gray-600 text-sm">Verify registered land plots, inspect historical transfer records, and verify property titles across Bangladesh.</p>
-        </div>
-
-        <!-- Portal Services Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Portal Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <!-- Service 1: Map Search -->
+            <!-- Service 1: Map & Plot Lookup -->
             <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-2 mb-3">
                         <span class="p-2 bg-green-50 text-bdGreen rounded-lg font-bold">🗺️</span>
-                        <h3 class="text-lg font-bold text-gray-800">Search by Plot / Map</h3>
+                        <h3 class="text-lg font-bold text-gray-800">Plot Lookup & Risk Analysis</h3>
                     </div>
-                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">View exact spatial boundaries, geographic coordinates, pricing breakdowns, and historical plot records directly on the map.</p>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">Inspect exact spatial boundaries, legal dispute warnings, Khas status, and cryptographic hashes.</p>
                 </div>
-                <a href="./search.html" class="inline-block text-center bg-bdGreen text-white px-5 py-2.5 rounded font-medium text-sm hover:bg-bdGreenHover transition shadow-sm w-full sm:w-auto">
-                    Open Interactive Map →
+                <a href="./search.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2 rounded font-medium text-xs hover:bg-bdGreenHover transition shadow-sm">
+                    Open Map Inspector →
                 </a>
             </div>
 
-            <!-- Service 2: Owner Search -->
-            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition">
-                <div class="flex items-center gap-2 mb-3">
-                    <span class="p-2 bg-green-50 text-bdGreen rounded-lg font-bold">👤</span>
-                    <h3 class="text-lg font-bold text-gray-800">Search by Owner Name</h3>
+            <!-- Service 2: NEW AI Porcha & Deed Forensics -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-emerald-200 bg-gradient-to-b from-white to-emerald-50/30 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="p-2 bg-emerald-100 text-bdGreen rounded-lg font-bold">🤖</span>
+                        <h3 class="text-lg font-bold text-gray-800">PorchaAI & Title Lineage</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-6 leading-relaxed">Upload scanned historical Bangla deeds/khatians to extract text via AI OCR and verify ownership lineage graphs.</p>
                 </div>
-                <p class="text-xs text-gray-600 mb-4 leading-relaxed">Search national registry records to find all properties registered under a specific citizen's name in Bangladesh.</p>
-                
-                <div class="flex gap-2">
-                    <input type="text" id="ownerInput" placeholder="e.g. Anonto Raj" class="border border-gray-300 p-2.5 rounded flex-grow text-sm focus:outline-none focus:border-bdGreen">
-                    <button onclick="searchByOwner()" class="bg-bdGreen text-white px-4 py-2.5 rounded text-sm hover:bg-bdGreenHover font-medium transition shadow-sm">Search</button>
+                <a href="./ai-forensics.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2 rounded font-medium text-xs hover:bg-bdGreenHover transition shadow-sm">
+                    Launch AI Forensics →
+                </a>
+            </div>
+
+            <!-- Service 3: Owner Search -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="p-2 bg-green-50 text-bdGreen rounded-lg font-bold">👤</span>
+                        <h3 class="text-lg font-bold text-gray-800">Citizen Owner Portfolio</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-4 leading-relaxed">Cross-reference national registry records for all properties registered under a citizen's name.</p>
+                </div>
+                <div>
+                    <div class="flex gap-2">
+                        <input type="text" id="ownerInput" placeholder="e.g. Anonto Raj" class="border border-gray-300 p-2 rounded flex-grow text-xs focus:outline-none focus:border-bdGreen">
+                        <button onclick="searchByOwner()" class="bg-bdGreen text-white px-3 py-2 rounded text-xs hover:bg-bdGreenHover font-medium transition">Search</button>
+                    </div>
                 </div>
             </div>
 
         </div>
-
-        <!-- Results Box -->
-        <div id="ownerResults" class="mt-6"></div>
-
-    </main>
-
-    <!-- Script -->
-    <script>
-        const ownerDatabase = {
-            "Anonto Raj": [
-                { plot: "Plot #555", location: "Savar, Dhaka", area: "555 sq meters", value: "$50,000" },
-                { plot: "Plot #120", location: "Uttara, Dhaka", area: "300 sq meters", value: "$35,000" }
-            ]
-        };
-
-        document.getElementById('ownerInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                searchByOwner();
-            }
-        });
-
-        function getSuggestion(input) {
-            const cleanInput = input.toLowerCase();
-            const keys = Object.keys(ownerDatabase);
-            for (let key of keys) {
-                if (key.toLowerCase().includes(cleanInput) || cleanInput.includes(key.toLowerCase().substring(0, 4))) {
-                    return key;
-                }
-            }
-            return null;
-        }
-
-        function searchByOwner() {
-            const inputVal = document.getElementById('ownerInput').value.trim();
-            const resultDiv = document.getElementById('ownerResults');
-
-            if (!inputVal) {
-                resultDiv.innerHTML = `<div class="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-lg text-sm">Please enter a name to search.</div>`;
-                return;
-            }
-            
-            const matchedKey = Object.keys(ownerDatabase).find(k => k.toLowerCase() === inputVal.toLowerCase());
-
-            if (matchedKey) {
-                const records = ownerDatabase[matchedKey];
-                let html = `
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-200">
-                        <h3 class="font-bold text-lg mb-4 text-bdGreen flex items-center gap-2">
-                            <span>📋</span> Registered Properties for "${matchedKey}"
-                        </h3>
-                        <div class="space-y-3">`;
-                records.forEach(r => {
-                    html += `
-                        <div class="p-4 border-l-4 border-bdGreen bg-slate-50 rounded shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                            <div>
-                                <h4 class="font-bold text-gray-800 text-sm">${r.plot}</h4>
-                                <p class="text-xs text-gray-600">${r.location} • Area: ${r.area}</p>
-                            </div>
-                            <span class="text-xs font-semibold bg-green-100 text-bdGreen px-3 py-1 rounded-full w-fit">Estimated Value: ${r.value}</span>
-                        </div>`;
-                });
-                html += `</div></div>`;
-                resultDiv.innerHTML = html;
-            } else {
-                const suggestion = getSuggestion(inputVal);
-                let suggestionText = suggestion ? ` Did you mean <a href="#" onclick="document.getElementById('ownerInput').value='${suggestion}'; searchByOwner();" class="text-bdGreen underline font-bold">${suggestion}</a>?` : '';
-                
-                resultDiv.innerHTML = `
-                    <div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg text-sm">
-                        No property records found for "<strong>${inputVal}</strong>".${suggestionText}
-                    </div>`;
-            }
-        }
-    </script>
-</body>
-</html>
