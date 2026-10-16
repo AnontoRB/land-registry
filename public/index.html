@@ -1,4 +1,58 @@
-<!-- Portal Services Grid -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandTech 2026 - National Land Registry & Verification System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bdGreen: '#006A4E',
+                        bdGreenHover: '#00543e',
+                        bdRed: '#F42A41',
+                        bdGold: '#FFCB05'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-slate-100 min-h-screen text-gray-800 font-sans">
+
+    <!-- Official Top Government Banner -->
+    <header class="bg-bdGreen text-white border-b-4 border-bdRed shadow-md">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-bdRed flex items-center justify-center font-bold text-white text-xl shadow">
+                    🇧🇩
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">National Land Registry & Verification Portal</h1>
+                    <p class="text-xs text-green-200">LandTech 2026 Hackathon Prototype | Smart E-Governance</p>
+                </div>
+            </div>
+            <div class="bg-white/10 px-3 py-1 rounded text-xs text-green-100 border border-white/20">
+                Secure Digital Land Services (Tracks: P1, P2, P3, P5)
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto p-6">
+        
+        <!-- Welcome Hero Box -->
+        <div class="bg-white rounded-lg shadow border-t-4 border-bdGreen p-6 mb-8">
+            <h2 class="text-2xl font-bold text-bdGreen mb-2">"PorchaAI & DeedTrust" - Smart Land Verification & AI Forensics</h2>
+            <p class="text-gray-600 text-sm leading-relaxed">
+                Built for the LandTech 2026 Innovation Hackathon[cite: 6]. This platform digitizes old handwritten records via AI OCR, verifies cryptographic deed hashes, stops double-selling, and secures e-mutation records across Bangladesh[cite: 6, 11].
+            </p>
+        </div>
+
+        <!-- Portal Services Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             <!-- Service 1: Map & Plot Lookup -->
@@ -10,12 +64,12 @@
                     </div>
                     <p class="text-xs text-gray-600 mb-6 leading-relaxed">Inspect exact spatial boundaries, legal dispute warnings, Khas status, and cryptographic hashes.</p>
                 </div>
-                <a href="./search.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2 rounded font-medium text-xs hover:bg-bdGreenHover transition shadow-sm">
+                <a href="./search.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2.5 rounded font-medium text-xs hover:bg-bdGreenHover transition shadow-sm">
                     Open Map Inspector →
                 </a>
             </div>
 
-            <!-- Service 2: NEW AI Porcha & Deed Forensics -->
+            <!-- Service 2: AI Porcha & Deed Forensics -->
             <div class="bg-white p-6 rounded-lg shadow-sm border border-emerald-200 bg-gradient-to-b from-white to-emerald-50/30 hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-2 mb-3">
@@ -24,7 +78,7 @@
                     </div>
                     <p class="text-xs text-gray-600 mb-6 leading-relaxed">Upload scanned historical Bangla deeds/khatians to extract text via AI OCR and verify ownership lineage graphs.</p>
                 </div>
-                <a href="./ai-forensics.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2 rounded font-medium text-xs hover:bg-bdGreenHover transition shadow-sm">
+                <a href="./ai-forensics.html" class="inline-block text-center bg-bdGreen text-white px-4 py-2.5 rounded font-medium text-xs hover:bg-bdGreenHover transition shadow-sm">
                     Launch AI Forensics →
                 </a>
             </div>
@@ -47,3 +101,82 @@
             </div>
 
         </div>
+
+        <!-- Results Box -->
+        <div id="ownerResults" class="mt-6"></div>
+
+    </main>
+
+    <!-- Script -->
+    <script>
+        const ownerDatabase = {
+            "Anonto Raj": [
+                { plot: "Plot #555", location: "Savar, Dhaka", area: "555 sq meters", value: "BDT 5,500,000", status: "Clean Title (Verified)" },
+                { plot: "Plot #120", location: "Uttara, Dhaka", area: "300 sq meters", value: "BDT 4,200,000", status: "Clean Title (Verified)" }
+            ]
+        };
+
+        document.getElementById('ownerInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchByOwner();
+            }
+        });
+
+        function getSuggestion(input) {
+            const cleanInput = input.toLowerCase();
+            const keys = Object.keys(ownerDatabase);
+            for (let key of keys) {
+                if (key.toLowerCase().includes(cleanInput) || cleanInput.includes(key.toLowerCase().substring(0, 4))) {
+                    return key;
+                }
+            }
+            return null;
+        }
+
+        function searchByOwner() {
+            const inputVal = document.getElementById('ownerInput').value.trim();
+            const resultDiv = document.getElementById('ownerResults');
+
+            if (!inputVal) {
+                resultDiv.innerHTML = `<div class="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-lg text-sm">Please enter a name to search.</div>`;
+                return;
+            }
+            
+            const matchedKey = Object.keys(ownerDatabase).find(k => k.toLowerCase() === inputVal.toLowerCase());
+
+            if (matchedKey) {
+                const records = ownerDatabase[matchedKey];
+                let html = `
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-green-200">
+                        <h3 class="font-bold text-lg mb-4 text-bdGreen flex items-center gap-2">
+                            <span>📋</span> Registered Properties for "${matchedKey}"
+                        </h3>
+                        <div class="space-y-3">`;
+                records.forEach(r => {
+                    html += `
+                        <div class="p-4 border-l-4 border-bdGreen bg-slate-50 rounded shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">${r.plot}</h4>
+                                <p class="text-xs text-gray-600">${r.location} | Area: ${r.area}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs font-semibold bg-green-100 text-bdGreen px-3 py-1 rounded-full block mb-1">Value: ${r.value}</span>
+                                <span class="text-[10px] text-emerald-700 font-bold">${r.status}</span>
+                            </div>
+                        </div>`;
+                });
+                html += `</div></div>`;
+                resultDiv.innerHTML = html;
+            } else {
+                const suggestion = getSuggestion(inputVal);
+                let suggestionText = suggestion ? ` Did you mean <a href="#" onclick="document.getElementById('ownerInput').value='${suggestion}'; searchByOwner();" class="text-bdGreen underline font-bold">${suggestion}</a>?` : '';
+                
+                resultDiv.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg text-sm">
+                        No property records found for "<strong>${inputVal}</strong>".${suggestionText}
+                    </div>`;
+            }
+        }
+    </script>
+</body>
+</html>
