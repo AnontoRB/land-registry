@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PorchaAI & DeedTrust - LandTech 2026 AI Forensics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bdGreen: '#006A4E',
+                        bdGreenHover: '#00543e',
+                        bdRed: '#F42A41'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 min-h-screen text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-bdGreen text-white border-b-4 border-bdRed shadow-md">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-bdRed flex items-center justify-center font-bold text-white text-xl shadow">🇧🇩</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">PorchaAI & DeedTrust Studio</h1>
+                    <p class="text-xs text-green-200">Multimodal OCR & Automated Chain-of-Title Lineage Engine</p>
+                </div>
+            </div>
+            <a href="./index.html" class="text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded border border-white/20 transition">← Return to Home</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto p-6 space-y-6">
+        
+        <!-- Intro Banner -->
+        <div class="bg-white rounded-lg shadow border-t-4 border-bdGreen p-6">
+            <h2 class="text-xl font-bold text-bdGreen mb-2">🧠 AI Handwritten Bengali OCR & Fraud Detection Engine</h2>
+            <p class="text-gray-600 text-sm leading-relaxed">
+                Simulate AI processing on scanned British-era or modern Bangla khatians/deeds. The model extracts structured attributes, tracks historical ownership trees, and flags overlapping boundary disputes or double-selling attempts.
+            </p>
+        </div>
+
+        <!-- Simulator Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Left: Upload & Input Panel -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 space-y-4">
+                <h3 class="font-bold text-gray-800 text-base border-b pb-2">📂 Step 1: Select or Upload Document Sample</h3>
+                
+                <div class="space-y-2">
+                    <label class="block text-xs font-semibold text-gray-700">Choose Dummy Historical Record:</label>
+                    <select id="docSelect" class="w-full border border-gray-300 p-2.5 rounded text-xs bg-slate-50 focus:outline-none focus:border-bdGreen">
+                        <option value="sample1">CS-204 / RS-512 Handwritten Khatian (Savar Mouza)</option>
+                        <option value="sample2">Sub-Registry Deed Transfer #9042 (Potential Double-Sale Flag)</option>
+                    </select>
+                </div>
+
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center bg-slate-50">
+                    <span class="text-3xl block mb-2">📄</span>
+                    <p class="text-xs text-gray-600 font-medium">Drop simulated scanned image here (PNG/JPG/PDF)</p>
+                    <p class="text-[10px] text-gray-400 mt-1">Mock file: <span id="fileNameDisplay" class="font-mono text-bdGreen">khatian_cs_204_savar.png</span></p>
+                </div>
+
+                <button onclick="runAIForensics()" class="w-full bg-bdGreen text-white py-3 rounded text-sm font-medium hover:bg-bdGreenHover transition shadow-sm flex items-center justify-center gap-2">
+                    <span>⚡</span> Run PorchaAI OCR & Lineage Analysis
+                </button>
+            </div>
+
+            <!-- Right: AI Output Dashboard -->
+            <div id="aiOutputContainer" class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex flex-col justify-center items-center text-center text-gray-400">
+                <span class="text-4xl mb-2">⏳</span>
+                <p class="text-xs">Awaiting analysis... Click the button to execute the AI verification pipeline.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script for Forensics Simulation -->
+    <script>
+        function runAIForensics() {
+            const container = document.getElementById('aiOutputContainer');
+            container.innerHTML = `<div class="flex flex-col items-center justify-center py-12"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-bdGreen mb-3"></div><p class="text-xs font-medium text-gray-600">Extracting Bengali Handscript via VLM OCR...</p></div>`;
+
+            setTimeout(() => {
+                container.innerHTML = `
+                    <div class="w-full text-left space-y-3 text-xs">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <span class="font-bold text-bdGreen text-sm">✅ AI Analysis Complete</span>
+                            <span class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded font-bold text-[10px]">Confidence: 96.4%</span>
+                        </div>
+                        
+                        <div class="bg-slate-50 p-3 rounded border">
+                            <strong class="text-gray-800 block mb-1">📝 Extracted Structured Data (JSON):</strong>
+                            <pre class="font-mono text-[10px] text-gray-600 bg-white p-2 rounded border overflow-x-auto">{
+  "mouza": "Savar-42",
+  "khatian_type": "CS & RS Mapped",
+  "recorded_owner": "Anonto Raj",
+  "dag_number": "555",
+  "total_area": "8 Katha"
+}</pre>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3 rounded">
+                            <strong class="text-blue-900 block mb-1">🔗 Automated Chain-of-Title Lineage Graph:</strong>
+                            <p class="text-blue-800 font-medium">Rahim Uddin (CS) ➔ Karim Ahmed (SA/RS) ➔ <span class="underline font-bold">Anonto Raj (BS Current)</span></p>
+                        </div>
+
+                        <div class="bg-emerald-50 border border-emerald-200 p-3 rounded flex items-center justify-between">
+                            <div>
+                                <strong class="text-emerald-900 block">🛡️ Fraud & Double-Selling Audit:</strong>
+                                <span class="text-emerald-700">No overlapping claims or area discrepancies detected across survey boundaries.</span>
+                            </div>
+                            <span class="bg-emerald-600 text-white px-2 py-1 rounded text-[10px] font-bold">SAFE</span>
+                        </div>
+                    </div>
+                `;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
