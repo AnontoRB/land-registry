@@ -1,10 +1,15 @@
-// Initialize OpenStreetMap via Leaflet
-const map = L.map('map').setView([23.8103, 90.4125], 13);
+// Initialize map only if the map container exists on the page
+const mapContainer = document.getElementById('map');
+let map = null;
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+if (mapContainer) {
+    map = L.map('map').setView([23.8103, 90.4125], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+}
 
 // Simulated database of land plots
 const landDatabase = {
@@ -42,11 +47,13 @@ function searchPlot() {
             </div>
         `;
 
-        // Update Map Marker
-        map.setView([plot.lat, plot.lng], 16);
-        L.marker([plot.lat, plot.lng]).addTo(map)
-            .bindPopup(`<b>${plot.id}</b><br>Owner: ${plot.currentOwner}`)
-            .openPopup();
+        // Update Map Marker if map is active
+        if (map) {
+            map.setView([plot.lat, plot.lng], 16);
+            L.marker([plot.lat, plot.lng]).addTo(map)
+                .bindPopup(`<b>${plot.id}</b><br>Owner: ${plot.currentOwner}`)
+                .openPopup();
+        }
     } else {
         resultDiv.innerHTML = `<p class="mt-4 text-red-600">Plot not found. Try searching for "555".</p>`;
     }
