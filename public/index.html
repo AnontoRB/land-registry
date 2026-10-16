@@ -1,1 +1,29 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Land Registry Portal</title>
+    <!-- Tailwind CSS (Open Source styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Leaflet CSS (Open Source maps) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow">
+        <h1 class="text-2xl font-bold mb-4 text-gray-800">Land Registry & Search System</h1>
+        
+        <!-- Search Bar -->
+        <div class="flex gap-2 mb-4">
+            <input type="text" id="plotInput" placeholder="Enter Plot ID (e.g. 555)" class="border p-2 rounded flex-grow">
+            <button onclick="searchPlot()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Search</button>
+        </div>
+
+        <!-- Interactive Map Container -->
+        <div id="map" class="h-96 w-full rounded border"></div>
+    </div>
+
+    <!-- Leaflet JS & App Script -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
