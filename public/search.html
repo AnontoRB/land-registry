@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Land Registry Portal - Interactive Map Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bdGreen: '#006A4E',
+                        bdGreenHover: '#00543e',
+                        bdRed: '#F42A41'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 min-h-screen text-gray-800 font-sans">
+
+    <!-- Official Top Government Banner -->
+    <header class="bg-bdGreen text-white border-b-4 border-bdRed shadow-md">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-bdRed flex items-center justify-center font-bold text-white text-xl shadow">
+                    🇧🇩
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">National Land Registry Portal</h1>
+                    <p class="text-xs text-green-200">Government of the People's Republic of Bangladesh</p>
+                </div>
+            </div>
+            <a href="./index.html" class="text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded border border-white/20 transition">
+                ← Return to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto p-6">
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h2 class="text-xl font-bold text-bdGreen mb-4">Interactive Plot & Cadastral Search</h2>
+            
+            <!-- Search Bar -->
+            <div class="flex gap-2 mb-4">
+                <input type="text" id="plotInput" placeholder="Enter Registered Plot ID (e.g. 555)" class="border border-gray-300 p-2.5 rounded text-sm flex-grow focus:outline-none focus:border-bdGreen">
+                <button onclick="searchPlot()" class="bg-bdGreen text-white px-5 py-2.5 rounded text-sm hover:bg-bdGreenHover font-medium transition shadow-sm">Search Plot</button>
+            </div>
+
+            <!-- Map Container -->
+            <div id="map" class="h-96 w-full rounded border border-gray-300 z-10 mb-4"></div>
+
+            <!-- Plot Information Container -->
+            <div id="resultDetails"></div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
