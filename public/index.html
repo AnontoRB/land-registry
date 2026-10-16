@@ -42,20 +42,46 @@
             ]
         };
 
-        function searchByOwner() {
-            const name = document.getElementById('ownerInput').value.trim();
-            const resultDiv = document.getElementById('ownerResults');
-            const records = ownerDatabase[name];
+        // Enable Enter Key for Searching
+        document.getElementById('ownerInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                searchByOwner();
+            }
+        });
 
-            if (records) {
-                let html = `<h3 class="font-bold text-lg mb-2">Properties owned by ${name}:</h3><ul class="space-y-2">`;
+        // Simple similarity check for "Did you mean?" suggestions
+        function getSuggestion(input) {
+            const cleanInput = input.toLowerCase();
+            const keys = Object.keys(ownerDatabase);
+            for (let key of keys) {
+                if (key.toLowerCase().includes(cleanInput) || cleanInput.includes(key.toLowerCase().substring(0, 4))) {
+                    return key;
+                }
+            }
+            return null;
+        }
+
+        function searchByOwner() {
+            const inputVal = document.getElementById('ownerInput').value.trim();
+            const resultDiv = document.getElementById('ownerResults');
+            
+            // Check direct match (case insensitive)
+            const matchedKey = Object.keys(ownerDatabase).find(k => k.toLowerCase() === inputVal.toLowerCase());
+
+            if (matchedKey) {
+                const records = ownerDatabase[matchedKey];
+                let html = `<h3 class="font-bold text-lg mb-2 text-green-800">Properties owned by ${matchedKey}:</h3><ul class="space-y-2">`;
                 records.forEach(r => {
                     html += `<li class="p-3 border rounded bg-gray-50"><strong>${r.plot}</strong> - ${r.location} (${r.area}) | Value: ${r.value}</li>`;
                 });
                 html += `</ul>`;
                 resultDiv.innerHTML = html;
             } else {
-                resultDiv.innerHTML = `<p class="text-red-600">No properties found for "${name}". Try searching for "Anonto Raj".</p>`;
+                // Check for close suggestions
+                const suggestion = getSuggestion(inputVal);
+                let suggestionText = suggestion ? ` Did you mean <a href="#" onclick="document.getElementById('ownerInput').value='${suggestion}'; searchByOwner();" class="text-blue-600 underline font-semibold">${suggestion}</a>?` : '';
+                
+                resultDiv.innerHTML = `<p class="text-red-600">No properties found for "${inputVal}".${suggestionText}</p>`;
             }
         }
     </script>
