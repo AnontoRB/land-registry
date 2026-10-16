@@ -1,1 +1,65 @@
- 
+/* ==========================================
+   Bangladesh National Portal Theme Styles
+   ========================================== */
+
+:root {
+    --bd-green: #006A4E;
+    --bd-green-hover: #00543e;
+    --bd-red: #F42A41;
+    --bd-gold: #FFCB05;
+    --bg-slate: #F1F5F9;
+}
+
+body {
+    background-color: var(--bg-slate);
+    color: #1E293B;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Official Government Header Styling */
+header.gov-header {
+    background-color: var(--bd-green);
+    border-bottom: 4px solid var(--bd-red);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Map Container Styling */
+#map {
+    height: 384px;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #CBD5E1;
+    z-index: 10;
+}
+
+/* Custom Card & Section Accents */
+.gov-card {
+    background: #FFFFFF;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #E2E8F0;
+    transition: all 0.2s ease-in-out;
+}
+
+.gov-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.result-highlight {
+    border-left: 4px solid var(--bd-green);
+    background-color: #F8FAFC;
+}
+
+/* Buttons */
+.btn-gov-primary {
+    background-color: var(--bd-green);
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-gov-primary:hover {
+    background-color: var(--bd-green-hover);
+}
